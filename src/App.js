@@ -1,24 +1,49 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const { t, i18n } = useTranslation();
+  function handleClick(lang) {
+    i18n.changeLanguage(lang);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <nav className="nav nav-pills nav-stacked">
+      <nav
+        style={{
+          width: "100%",
+          padding: "2rem 0",
+          backgroundColor: "gray",
+          textAlign: "center",
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => handleClick("en")}
+          className="btn btn-primary m-4"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          English
+        </button>
+        <button
+          type="button"
+          onClick={() => handleClick("de")}
+          className="btn btn-danger m-4"
+        >
+          German
+        </button>
+        <button
+          type="button"
+          onClick={() => handleClick("fr")}
+          className="btn btn-success m-4"
+        >
+          French
+        </button>
+      </nav>
+      <div className="container center">
+        <h1>{t("text1.t")} </h1>
+        <p>{t("text2.t")} </p>
+      </div>
+    </nav>
   );
 }
 
